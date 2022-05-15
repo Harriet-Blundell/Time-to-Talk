@@ -78,10 +78,12 @@ const fetchAvailableAppointmentsByDate = (
 ) => {
   const earliestDate = moment(earliestDateInput).unix();
   const latestDate = moment(latestDateInput).unix();
+  const appointmentsObj = {};
 
   return readFile("./data/availability-mock.json").then(
     (appointmentAvailabilityData) => {
       const appointmentsObject = JSON.parse(appointmentAvailabilityData);
+
       for (const therapist in appointmentsObject) {
         for (let i = 0; i < appointmentsObject[therapist].length; i++) {
           const availableAppointment = moment(
@@ -91,10 +93,18 @@ const fetchAvailableAppointmentsByDate = (
             availableAppointment > earliestDate &&
             availableAppointment < latestDate
           ) {
-            // TODO
+            appointmentsObj[therapist] = [
+              {
+                id: appointmentsObject[therapist][i].id,
+                availableTime: moment
+                  .unix(availableAppointment)
+                  .format("DD/MM/YYYY"),
+              },
+            ];
           }
         }
       }
+      return appointmentsObj;
     }
   );
 };
