@@ -32,17 +32,47 @@ const fetchNextAvailableAppointmentsByDate = () => {
   });
 };
 
+const fetchTherapistByAppointmentType = (
+  firstAppointmentType,
+  secondAppointmentType
+) => {
+  return readFile("./data/counsellor-mock.json").then((counsellorData) => {
+    const parsedCounsellorData = JSON.parse(counsellorData);
+    const therapistsByAppointmentTypes = parsedCounsellorData.filter(
+      (therapist) => {
+        if (
+          therapist.appointment_types.length === 1 &&
+          (therapist.appointment_types.includes(firstAppointmentType) ||
+            therapist.appointment_types.includes(secondAppointmentType))
+        ) {
+          return therapist;
+        } else if (
+          therapist.appointment_types.length === 2 &&
+          therapist.appointment_types.includes(
+            firstAppointmentType && secondAppointmentType
+          )
+        ) {
+          return therapist;
+        } else {
+          return "";
+        }
+      }
+    );
+    return therapistsByAppointmentTypes;
+  });
+};
+
 const fetchTherapistById = (id) => {
-  return readFile("./data/counsellor-mock.json").then((data) => {
-    const parsedData = JSON.parse(data);
-    const filteredData = parsedData.filter(
+  return readFile("./data/counsellor-mock.json").then((counsellorData) => {
+    const parsedCounsellorData = JSON.parse(counsellorData);
+    const filteredData = parsedCounsellorData.filter(
       (counsellor) => counsellor.id === id
     );
     return filteredData;
   });
 };
 
-export const fetchAvailableAppointmentsByDate = (
+const fetchAvailableAppointmentsByDate = (
   earliestDateInput,
   latestDateInput
 ) => {
@@ -69,8 +99,7 @@ export const fetchAvailableAppointmentsByDate = (
   );
 };
 
-//fetch therapists by specific type.
-//fetch therapists by specialisation.
+// fetch therapists by specialisation.
 
 /*
 - use a for-in loop to access the key of each therapist in the object
