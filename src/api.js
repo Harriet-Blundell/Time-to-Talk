@@ -8,6 +8,11 @@ const fetchAllTherapists = (pageNumber) => {
   });
 };
 
+/*
+fetchAllTherapists() takes a page number as an argument and returns the first 10 therapists on the home page
+when the user increments the page number, the function will collect the next 10 objects (therapists) in the array.
+*/
+
 const fetchNextAvailableAppointmentsByDate = () => {
   return readFile("./data/availability-mock.json").then((availabilityData) => {
     let earliestDate = 0;
@@ -32,6 +37,15 @@ const fetchNextAvailableAppointmentsByDate = () => {
   });
 };
 
+/*
+fetchNextAvailableAppointmentsByDate() uses a for-in loop to iterate over the key in the object
+the for-loop iterates over the key's values which is an array
+moment.js is being used to convert 'datetime' to unix time
+an if statement is being used to check if 'datetime' is less than the variable 'earliestDate',
+if it is then earliestDate is reassigned a new value
+the data is then pushed into an array along with the therapist and their next available date converted back to 'DD/MM/YYYY'
+*/
+
 const fetchTherapistByAppointmentType = (
   firstAppointmentType,
   secondAppointmentType
@@ -54,13 +68,51 @@ const fetchTherapistByAppointmentType = (
         ) {
           return therapist;
         } else {
-          return "";
+          return [];
         }
       }
     );
     return therapistsByAppointmentTypes;
   });
 };
+
+/*
+fetchTherapistByAppointmentType() takes two string arguments that the user will select between ('one_off' or 'consultation' or both)
+filter() is being used to return the therapists who match the conditions of the if statement
+the if statement checks 'appointment_types' length for 1 value and if the value is 'one_off' or 'consultation'
+the if statement also checks if 'appointment_types' length is 2 and if both of the selected values are in 'appointment_types'
+if a therapist has no 'one_off' or 'consultation' appointment_types then an empty array is returned
+*/
+
+const fetchTherapistBySpecialism = (selectedSpecialisms) => {
+  return readFile("./data/counsellor-mock.json").then((counsellorData) => {
+    const parsedCounsellorData = JSON.parse(counsellorData);
+
+    const therapists = [];
+
+    if (selectedSpecialisms.length >= 2) {
+      for (let i = 0; i < parsedCounsellorData.length; i++) {
+        if (
+          selectedSpecialisms.every((specialism) =>
+            parsedCounsellorData[i].specialisms.includes(specialism)
+          )
+        ) {
+          therapists.push(parsedCounsellorData[i]);
+        }
+      }
+    }
+
+    return therapists;
+  });
+};
+
+/*
+fetchTherapistBySpecialism() takes an array of strings as an argument
+the argument is checked in an if statement to see if its length is greater than or equal to 2
+if it passes the condition then a for-loop is used to iterate over the array objects
+.every() is used to check if the 'specialisms' array includes the individual specialism the user has selected
+if the conditions are met, the correct therapists are returned else an empty array is given back
+*/
 
 const fetchTherapistById = (id) => {
   return readFile("./data/counsellor-mock.json").then((counsellorData) => {
@@ -71,6 +123,11 @@ const fetchTherapistById = (id) => {
     return filteredData;
   });
 };
+
+/*
+fetchTherapistById() takes a string an argument and compares it to the id in counsellor-mock data
+if the ids match then the individual therapist is selected
+*/
 
 const fetchAvailableAppointmentsByDate = (
   earliestDateInput,
@@ -109,16 +166,7 @@ const fetchAvailableAppointmentsByDate = (
   );
 };
 
-// fetch therapists by specialisation.
-
 /*
-- use a for-in loop to access the key of each therapist in the object
-- use a for loop to iterate through the key values of each individual therapist by using bracket notation
-- use dot notation to access the datetime key value in the object
-- turn the datetime into unix time
-- sessions start at 6am until 9pm
-
-- if I choose 09:00 between 26th and 28th May
-
-- In front end, take calendar input from user and convert to unix time to be used by fetch function comparison.
+fetchAvailableAppointmentsByDate() takes a user's earliest time and latest time input and finds a therapist
+who is available between the selected dates
 */
