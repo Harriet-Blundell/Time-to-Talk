@@ -1,27 +1,27 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Header from "./Header";
 import { fetchAllTherapists } from "./api";
 import TherapistCard from "./TherapistCard";
 
 function App() {
-  const [allTherapists, setAllTherapists] = useState();
+  const [allTherapists, setAllTherapists] = useState([]);
 
   useEffect(() => {
     setAllTherapists({
-      allTherapists: fetchAllTherapists(1),
-    });
+      allTherapists: fetchAllTherapists(1)
+    })
   }, []);
 
   return (
-    <div className="container">
-      {allTherapists.allTherapists.map((therapist, index) => {
-        return (
-          <li key={index}>
-            <h1>{therapist.firstName}</h1>
-          </li>
-        );
+    <>
+      <Header />
+      <div className="therapist-container">
+      {allTherapists.allTherapists.map((therapist) => {
+        return <TherapistCard {...therapist} />
       })}
-    </div>
+      </div>
+    </>
   );
 }
 
