@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { fetchAllTherapists } from "./api";
 import TherapistCard from "./TherapistCard";
+import Pagination from "./Pagination";
 
 function App() {
   const [allTherapists, setAllTherapists] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setAllTherapists({
-      allTherapists: fetchAllTherapists(1),
+      allTherapists: fetchAllTherapists(currentPage),
     });
-  }, []);
+  }, [currentPage]);
+
+  const handlePageClick = (number) => {
+    setCurrentPage(currentPage + number);
+  };
 
   return (
     <>
@@ -23,6 +29,7 @@ function App() {
             })
           : ""}
       </div>
+      <Pagination currentPage={currentPage} handlePageClick={handlePageClick} />
     </>
   );
 }
@@ -34,4 +41,13 @@ export default App;
   before the DOM was ready therefore the data was not loading and showing an error in the console as "undefined"
 - This allows there to be an empty string for the time being until the DOM is ready and then the function is called
 
+Pagination:
+- The useState Hook helps to preserve the values between function calls.
+- The useState Hook will return a pair of values, the first being the variable's state,
+  and the second is the function to set the state
+
+
+useEffect Hook:
+- If you'd like to perform any side effects like data fetching, DOM manipulation, or subscribing and unscribing to events
+  useEffect Hook will help
 */
