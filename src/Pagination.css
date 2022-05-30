@@ -1,0 +1,18 @@
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 20px;
+}
+
+.button {
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  left: 499px;
+  top: 2273px;
+
+  /* Gray */
+
+  border: 1px solid #bcbcbc;
+  border-radius: 6px;
+}
