@@ -14,6 +14,20 @@
   justify-content: space-around;
 }
 
+.therapist-initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #041549;
+  text-align: center;
+  background: #35D0BA;
+}
+
 .therapist-information {
   display: flex;
   flex-direction: column;

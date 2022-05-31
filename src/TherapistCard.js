@@ -23,12 +23,15 @@ export default function TherapistCard({
             {firstName} {lastName}
           </h3>
           <p className="occupation">Therapist</p>
-          <div>
+          <div className="appointment-types">
             <h3>Appointment types:</h3>
-            <p>{appointment_types[0]}</p>
-            <p>
-              {appointment_types[1] !== "undefined" ? appointment_types[1] : ""}
-            </p>
+            {appointment_types.length === 2 ? (
+              <p>
+                {appointment_types[0]} and {appointment_types[1]}
+              </p>
+            ) : (
+              <p>{appointment_types[0]}</p>
+            )}
           </div>
         </div>
       </div>
@@ -40,23 +43,9 @@ export default function TherapistCard({
 Button component:
 - I would need to pass props down to the component such as id, firstName, lastName, appointment_type, appointment_medium, and availability
 - The information would need to be passed to "Confirmation" component screen
-<p>Therapist</p>
-        <p>
-          Appointment types: {appointment_types[0]} and {appointment_types[1]}
-        </p>
-        <div className="specialism-content">
-          <div>
-            Can help you with:
-            {specialisms.length !== 0
-              ? specialisms.map((specialism) => {
-                  return <span> {specialism}, </span>;
-                })
-              : " N/A"}
-          </div>
-        </div>
-      </div>
-      <div className="button-container">
-        <button>Book Now</button>
-      </div>
 
+
+Logic:
+- if appointment_types has a length of two, you know it has consultation and one_off
+- if appointment_types doesn't then you access the first index
 */

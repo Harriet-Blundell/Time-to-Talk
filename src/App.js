@@ -6,7 +6,7 @@ import TherapistCard from "./TherapistCard";
 import Pagination from "./Pagination";
 
 function App() {
-  const [allTherapists, setAllTherapists] = useState(null);
+  const [allTherapists, setAllTherapists] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ function App() {
   }, [currentPage]);
 
   const handlePageClick = (number) => {
+    window.scrollTo(0, 0);
     setCurrentPage(currentPage + number);
   };
 
