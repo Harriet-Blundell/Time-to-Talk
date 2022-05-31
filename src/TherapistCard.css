@@ -15,6 +15,15 @@
 }
 
 .therapist-information {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.therapist-name {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+
+.occupation {
+  font-size: 20px;
 }

@@ -19,10 +19,17 @@ export default function TherapistCard({
           </h1>
         </div>
         <div className="therapist-information">
-          <h3>
+          <h3 className="therapist-name">
             {firstName} {lastName}
           </h3>
-          <p>Therapist</p>
+          <p className="occupation">Therapist</p>
+          <div>
+            <h3>Appointment types:</h3>
+            <p>{appointment_types[0]}</p>
+            <p>
+              {appointment_types[1] !== "undefined" ? appointment_types[1] : ""}
+            </p>
+          </div>
         </div>
       </div>
     </div>

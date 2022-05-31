@@ -46,7 +46,6 @@ Pagination:
 - The useState Hook will return a pair of values, the first being the variable's state,
   and the second is the function to set the state
 
-
 useEffect Hook:
 - If you'd like to perform any side effects like data fetching, DOM manipulation, or subscribing and unscribing to events
   useEffect Hook will help
