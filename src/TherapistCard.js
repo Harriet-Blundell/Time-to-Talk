@@ -28,19 +28,22 @@ export default function TherapistCard({
             {firstName} {lastName}
           </h3>
           <p className="occupation">Therapist</p>
-          <div className="appointment-types">
-            <h3>Appointment types:</h3>
             {appointment_types.length === 2 ? (
-              <p>
-                {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
-              </p>
+              <div className="appointment-types">
+                <h4>Appointment types:</h4>
+                <p>
+                  {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
+                </p>
+              </div>
             ) : (
-              <p>{appointmentTypeFirstValue}</p>
+              <div className="appointment-types">
+                <h4>Appointment type:</h4>
+                <p>{appointmentTypeFirstValue}</p>
+              </div>
             )}
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
