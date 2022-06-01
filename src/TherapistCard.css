@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 130px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -31,13 +31,23 @@
 .therapist-information {
   display: flex;
   flex-direction: column;
+  width: 400px;
 }
 
 .therapist-name {
-  font-size: 40px;
+  font-size: 35px;
   margin-bottom: 0px;
 }
 
 .occupation {
   font-size: 20px;
+}
+
+.appointment-types {
+  display: flex;
+  align-items: center;
+}
+
+h3 {
+  padding-right: 10px;
 }

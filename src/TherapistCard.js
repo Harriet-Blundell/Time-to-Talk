@@ -9,6 +9,11 @@ export default function TherapistCard({
   appointment_types,
   specialisms,
 }) {
+  const appointmentTypeFirstValue =
+    appointment_types[0] === "one_off" ? "one-off" : "consultation";
+  const appointmentTypeSecondValue =
+    appointment_types[1] === "one_off" ? "one-off" : "consultation";
+
   return (
     <div className="therapist-card-container">
       <div className="therapist-information-container">
@@ -27,10 +32,10 @@ export default function TherapistCard({
             <h3>Appointment types:</h3>
             {appointment_types.length === 2 ? (
               <p>
-                {appointment_types[0]} and {appointment_types[1]}
+                {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
               </p>
             ) : (
-              <p>{appointment_types[0]}</p>
+              <p>{appointmentTypeFirstValue}</p>
             )}
           </div>
         </div>
