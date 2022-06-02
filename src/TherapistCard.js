@@ -22,6 +22,10 @@ export default function TherapistCard({
             {firstName[0]}
             {lastName[0]}
           </h1>
+          <div className="appointment-medium-icons">
+            <img src="video-camera.png" alt="video camera icon" className="video-icon" />
+            <img src="call-phone.png" alt="phone call icon"/>
+          </div>
         </div>
         <div className="therapist-information">
           <h3 className="therapist-name">
@@ -56,4 +60,8 @@ Button component:
 Logic:
 - if appointment_types has a length of two, you know it has consultation and one_off
 - if appointment_types doesn't then you access the first index
+
+
+TODO: Figure out logic for when you show the video and phone call icon
+      Use appointment_mediums to figure it out
 */

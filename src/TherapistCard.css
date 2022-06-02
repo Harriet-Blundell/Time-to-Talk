@@ -16,7 +16,8 @@
 
 .therapist-initials {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   margin-top: 130px;
   width: 200px;
@@ -26,6 +27,16 @@
   color: #041549;
   text-align: center;
   background: #35D0BA;
+}
+
+.appointment-medium-icons {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.video-icon {
+  padding-right: 10px;
 }
 
 .therapist-information {
