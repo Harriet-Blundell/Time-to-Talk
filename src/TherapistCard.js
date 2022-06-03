@@ -36,11 +36,7 @@ export default function TherapistCard({
             </div>
           ) : (
             <div className="appointment-medium-icons">
-              <img
-                src={appointmentMediumFirstValue}
-                alt="video camera icon"
-                className="video-icon"
-              />
+              <img src={appointmentMediumFirstValue} alt="video camera icon" />
             </div>
           )}
         </div>
@@ -62,6 +58,14 @@ export default function TherapistCard({
               <p>{appointmentTypeFirstValue}</p>
             </div>
           )}
+          <div className="specialism-container">
+            <span className="specialism-title">Can help you with: </span>
+            {specialisms.length > 1
+              ? specialisms.map((specialism) => {
+                  return <span className="specialism">{specialism}</span>;
+                })
+              : "N/A"}
+          </div>
         </div>
       </div>
     </div>
@@ -79,6 +83,6 @@ Logic:
 - if appointment_types doesn't then you access the first index
 
 
-TODO: Figure out logic for when you show the video and phone call icon
-      Use appointment_mediums to figure it out
+TODO: Loop through specialisms
+
 */
