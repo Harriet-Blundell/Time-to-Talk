@@ -14,6 +14,9 @@ export default function TherapistCard({
   const appointmentTypeSecondValue =
     appointment_types[1] === "one_off" ? "one-off" : "consultation";
 
+  const appointmentMediumFirstValue =
+    appointment_mediums[0] === "video" ? "video-camera.png" : "call-phone.png";
+
   return (
     <div className="therapist-card-container">
       <div className="therapist-information-container">
@@ -22,17 +25,24 @@ export default function TherapistCard({
             {firstName[0]}
             {lastName[0]}
           </h1>
-          <div className="appointment-medium-icons">
-            {videoAppointment ? (
+          {appointment_types.length === 2 ? (
+            <div className="appointment-medium-icons">
               <img
                 src="video-camera.png"
                 alt="video camera icon"
                 className="video-icon"
               />
-            ) : (
               <img src="call-phone.png" alt="phone call icon" />
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="appointment-medium-icons">
+              <img
+                src={appointmentMediumFirstValue}
+                alt="video camera icon"
+                className="video-icon"
+              />
+            </div>
+          )}
         </div>
         <div className="therapist-information">
           <h3 className="therapist-name">
