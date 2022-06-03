@@ -23,8 +23,15 @@ export default function TherapistCard({
             {lastName[0]}
           </h1>
           <div className="appointment-medium-icons">
-            <img src="video-camera.png" alt="video camera icon" className="video-icon" />
-            <img src="call-phone.png" alt="phone call icon"/>
+            {videoAppointment ? (
+              <img
+                src="video-camera.png"
+                alt="video camera icon"
+                className="video-icon"
+              />
+            ) : (
+              <img src="call-phone.png" alt="phone call icon" />
+            )}
           </div>
         </div>
         <div className="therapist-information">
@@ -32,22 +39,22 @@ export default function TherapistCard({
             {firstName} {lastName}
           </h3>
           <p className="occupation">Therapist</p>
-            {appointment_types.length === 2 ? (
-              <div className="appointment-types">
-                <h4>Appointment types:</h4>
-                <p>
-                  {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
-                </p>
-              </div>
-            ) : (
-              <div className="appointment-types">
-                <h4>Appointment type:</h4>
-                <p>{appointmentTypeFirstValue}</p>
-              </div>
-            )}
-          </div>
+          {appointment_types.length === 2 ? (
+            <div className="appointment-types">
+              <h4>Appointment types:</h4>
+              <p>
+                {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
+              </p>
+            </div>
+          ) : (
+            <div className="appointment-types">
+              <h4>Appointment type:</h4>
+              <p>{appointmentTypeFirstValue}</p>
+            </div>
+          )}
         </div>
       </div>
+    </div>
   );
 }
 
