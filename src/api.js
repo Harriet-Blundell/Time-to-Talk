@@ -23,7 +23,7 @@ export const fetchNextAvailableAppointmentsByDate = () => {
       }
     }
     nextAvailableDate.push({
-      therapist,
+      id: therapist,
       nextAvailableTime: moment.unix(earliestDate).toDate(),
     });
   }
