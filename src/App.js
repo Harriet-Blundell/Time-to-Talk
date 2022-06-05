@@ -1,19 +1,26 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import { fetchAllTherapists } from "./api";
+import {
+  fetchAllTherapists,
+  fetchNextAvailableAppointmentsByDate,
+} from "./api";
 import TherapistCard from "./TherapistCard";
 import Pagination from "./Pagination";
 
 function App() {
   const [allTherapists, setAllTherapists] = useState();
+  const [nextAppointment, setNextAppointment] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setAllTherapists({
       allTherapists: fetchAllTherapists(currentPage),
     });
-  }, [currentPage]);
+    setNextAppointment({
+      nextAppointment: fetchNextAvailableAppointmentsByDate(),
+    });
+  }, [currentPage], []);
 
   const handlePageClick = (number) => {
     window.scrollTo(0, 0);
@@ -26,7 +33,12 @@ function App() {
       <div className="therapist-container">
         {allTherapists
           ? allTherapists.allTherapists.map((therapist) => {
-              return <TherapistCard {...therapist} />;
+              return (
+                <TherapistCard
+                  {...therapist}
+                  nextAppointment={nextAppointment}
+                />
+              );
             })
           : ""}
       </div>
