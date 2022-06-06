@@ -26,13 +26,20 @@
   font-size: 40px;
   color: #041549;
   text-align: center;
-  background: #35D0BA;
+  background: #35d0ba;
 }
 
 .appointment-medium-icons {
   display: flex;
   align-items: center;
   margin-top: 16px;
+  cursor: pointer;
+}
+
+line {
+  border: 1px solid rgba(55, 65, 81, 0.31);
+  transform: rotate(180deg);
+  height: 445px;
 }
 
 .video-icon {
@@ -63,4 +70,35 @@
 
 h4 {
   padding-right: 10px;
+}
+
+.specialism-title {
+  font-weight: bold;
+}
+
+.specialism:after {
+  content: ", ";
+}
+
+.specialism:last-child:before {
+  content: "and ";
+}
+
+.specialism:last-child:after {
+  content: "";
+}
+
+.therapist-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 19px;
+}
+
+.therapist-text {
+  background: #35d0ba;
+  border-radius: 5px;
+  color: #041549;
+  font-weight: bold;
+  padding: 10px 10px;
+  cursor: pointer;
 }
