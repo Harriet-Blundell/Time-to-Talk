@@ -9,10 +9,9 @@ export default function TherapistCard({
   appointment_types,
   specialisms,
 }) {
+
   const appointmentTypeFirstValue =
     appointment_types[0] === "one_off" ? "one-off" : "consultation";
-  const appointmentTypeSecondValue =
-    appointment_types[1] === "one_off" ? "one-off" : "consultation";
 
   const appointmentMediumFirstValue =
     appointment_mediums[0] === "video" ? "video-camera.png" : "call-phone.png";
@@ -40,6 +39,7 @@ export default function TherapistCard({
             </div>
           )}
         </div>
+        <line></line>
         <div className="therapist-information">
           <h3 className="therapist-name">
             {firstName} {lastName}
@@ -48,9 +48,7 @@ export default function TherapistCard({
           {appointment_types.length === 2 ? (
             <div className="appointment-types">
               <h4>Appointment types:</h4>
-              <p>
-                {appointmentTypeFirstValue} and {appointmentTypeSecondValue}
-              </p>
+              <p>consultation and one-off</p>
             </div>
           ) : (
             <div className="appointment-types">
@@ -58,6 +56,10 @@ export default function TherapistCard({
               <p>{appointmentTypeFirstValue}</p>
             </div>
           )}
+          <div className="next-available">
+            <span>Next available: </span>
+            
+          </div>
           <div className="specialism-container">
             <span className="specialism-title">Can help you with: </span>
             {specialisms.length > 1
@@ -65,6 +67,9 @@ export default function TherapistCard({
                   return <span className="specialism">{specialism}</span>;
                 })
               : "N/A"}
+          </div>
+          <div className="therapist-button">
+            <p className="therapist-text">Book Now</p>
           </div>
         </div>
       </div>
