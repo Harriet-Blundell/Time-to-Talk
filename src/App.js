@@ -13,14 +13,18 @@ function App() {
   const [nextAppointment, setNextAppointment] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    setAllTherapists({
-      allTherapists: fetchAllTherapists(currentPage),
-    });
-    setNextAppointment({
-      nextAppointment: fetchNextAvailableAppointmentsByDate(),
-    });
-  }, [currentPage], []);
+  useEffect(
+    () => {
+      setAllTherapists({
+        allTherapists: fetchAllTherapists(currentPage),
+      });
+      setNextAppointment({
+        nextAppointment: fetchNextAvailableAppointmentsByDate(),
+      });
+    },
+    [currentPage],
+    []
+  );
 
   const handlePageClick = (number) => {
     window.scrollTo(0, 0);
