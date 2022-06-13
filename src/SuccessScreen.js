@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function SuccessScreen() {
-  return (
-    <div>SuccessScreen</div>
-  )
+  return <div>SuccessScreen</div>;
 }
 
 /*
