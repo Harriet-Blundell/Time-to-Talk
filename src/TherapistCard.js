@@ -58,7 +58,6 @@ export default function TherapistCard({
           )}
           <div className="next-available">
             <span>Next available: </span>
-
           </div>
           <div className="specialism-container">
             <span className="specialism-title">Can help you with: </span>
