@@ -13,17 +13,12 @@ function App() {
   const [nextAppointment, setNextAppointment] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  
   useEffect(() => {
     setAllTherapists(fetchAllTherapists(currentPage));
   }, [currentPage]);
-  
-  console.log(allTherapists, "<<< allTherapists");
-  
+
   useEffect(() => {
-    setNextAppointment({
-      nextAppointment: fetchNextAvailableAppointmentsByDate(),
-    });
+    setNextAppointment(fetchNextAvailableAppointmentsByDate());
   }, []);
 
   const handlePageClick = (number) => {
@@ -31,20 +26,20 @@ function App() {
     setCurrentPage(currentPage + number);
   };
 
-  console.log(allTherapists, "<<< all therapists");
-
   return (
     <>
       <Header />
       <div className="therapist-container">
-        {allTherapists.map((therapist) => {
+        {allTherapists
+          ? allTherapists.map((therapist) => {
               return (
                 <TherapistCard
                   {...therapist}
                   nextAppointment={nextAppointment}
                 />
               );
-            })}
+            })
+          : ""}
       </div>
       <Pagination currentPage={currentPage} handlePageClick={handlePageClick} />
     </>
