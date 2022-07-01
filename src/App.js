@@ -13,38 +13,38 @@ function App() {
   const [nextAppointment, setNextAppointment] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(
-    () => {
-      setAllTherapists({
-        allTherapists: fetchAllTherapists(currentPage),
-      });
-      setNextAppointment({
-        nextAppointment: fetchNextAvailableAppointmentsByDate(),
-      });
-    },
-    [currentPage],
-    []
-  );
+  
+  useEffect(() => {
+    setAllTherapists(fetchAllTherapists(currentPage));
+  }, [currentPage]);
+  
+  console.log(allTherapists, "<<< allTherapists");
+  
+  useEffect(() => {
+    setNextAppointment({
+      nextAppointment: fetchNextAvailableAppointmentsByDate(),
+    });
+  }, []);
 
   const handlePageClick = (number) => {
     window.scrollTo(0, 0);
     setCurrentPage(currentPage + number);
   };
 
+  console.log(allTherapists, "<<< all therapists");
+
   return (
     <>
       <Header />
       <div className="therapist-container">
-        {allTherapists
-          ? allTherapists.allTherapists.map((therapist) => {
+        {allTherapists.map((therapist) => {
               return (
                 <TherapistCard
                   {...therapist}
                   nextAppointment={nextAppointment}
                 />
               );
-            })
-          : ""}
+            })}
       </div>
       <Pagination currentPage={currentPage} handlePageClick={handlePageClick} />
     </>
