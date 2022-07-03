@@ -10,7 +10,8 @@ import Pagination from "./Pagination";
 
 function App() {
   const [allTherapists, setAllTherapists] = useState();
-  const [nextAppointment, setNextAppointment] = useState();
+  const [nextAppointmentData, setNextAppointmentData] = useState();
+
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function App() {
   }, [currentPage]);
 
   useEffect(() => {
-    setNextAppointment(fetchNextAvailableAppointmentsByDate());
+    setNextAppointmentData(fetchNextAvailableAppointmentsByDate());
   }, []);
 
   const handlePageClick = (number) => {
@@ -35,7 +36,7 @@ function App() {
               return (
                 <TherapistCard
                   {...therapist}
-                  nextAppointment={nextAppointment}
+                  nextAppointmentData={nextAppointmentData}
                 />
               );
             })
