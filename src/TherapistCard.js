@@ -1,5 +1,5 @@
 import "./TherapistCard.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function TherapistCard({
   id,
@@ -8,7 +8,20 @@ export default function TherapistCard({
   appointment_mediums,
   appointment_types,
   specialisms,
+  nextAppointmentData,
 }) {
+  const [therapistNextAppointment, setTherapistNextAppointment] = useState([]);
+
+  useEffect(() => {
+    for (let i = 0; i < nextAppointmentData.length; i++) {
+      if (nextAppointmentData[i].id === id) {
+        setTherapistNextAppointment(nextAppointmentData[i].nextAvailableTime);
+      }
+    }
+  }, [nextAppointmentData, id]);
+
+  console.log(therapistNextAppointment, "<<<<<<");
+
   const appointmentTypeFirstValue =
     appointment_types[0] === "one_off" ? "one-off" : "consultation";
 
