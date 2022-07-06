@@ -20,8 +20,6 @@ export default function TherapistCard({
     }
   }, [nextAppointmentData, id]);
 
-  console.log(therapistNextAppointment, "<<<<<<");
-
   const appointmentTypeFirstValue =
     appointment_types[0] === "one_off" ? "one-off" : "consultation";
 
