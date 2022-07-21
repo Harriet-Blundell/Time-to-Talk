@@ -1,5 +1,6 @@
 import "./TherapistCard.css";
 import React, { useEffect, useState } from "react";
+import moment from 'moment';
 
 export default function TherapistCard({
   id,
@@ -68,6 +69,7 @@ export default function TherapistCard({
           )}
           <div className="next-available">
             <span>Next available: </span>
+            <p>{JSON.stringify(moment(therapistNextAppointment).format('LLLL'))}</p>
           </div>
           <div className="specialism-container">
             <span className="specialism-title">Can help you with: </span>
