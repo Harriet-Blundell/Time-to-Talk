@@ -11,7 +11,6 @@ import Pagination from "./Pagination";
 function App() {
   const [allTherapists, setAllTherapists] = useState();
   const [nextAppointmentData, setNextAppointmentData] = useState();
-
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

@@ -11,7 +11,7 @@
 
 .therapist-information-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .therapist-initials {
@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 130px;
+  margin: auto;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -49,6 +49,7 @@ line {
 .therapist-information {
   display: flex;
   flex-direction: column;
+  margin: auto;
   width: 400px;
   color: #374151;
 }
@@ -68,23 +69,43 @@ line {
   font-size: 17px;
 }
 
-h4 {
-  padding-right: 10px;
+.appointment-title {
+  font-weight: bold;
+}
+
+.appointment-content {
+  font-weight: lighter;
+}
+
+.next-available-text {
+  font-weight: bold;
+}
+
+.next-available-content {
+  font-weight: lighter;
 }
 
 .specialism-title {
   font-weight: bold;
 }
 
-.specialism:after {
+.specialism-content {
+  font-weight: lighter;
+}
+
+.specialism-content:after {
   content: ", ";
 }
 
-.specialism:last-child:before {
+.specialism-content:nth-last-child(2):after {
+  content: " ";
+}
+
+.specialism-content:last-child:before {
   content: "and ";
 }
 
-.specialism:last-child:after {
+.specialism-content:last-child:after {
   content: "";
 }
 

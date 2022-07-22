@@ -3,6 +3,7 @@ import "./Pagination.css";
 
 export default function Pagination(props) {
   const { currentPage, handlePageClick } = props;
+
   return (
     <div className="button-container">
       <button
@@ -18,6 +19,7 @@ export default function Pagination(props) {
           <img src="chevron-left-active.png" alt="left chevron" />
         )}
       </button>
+      <p>{currentPage}</p>
       <button
         className="button"
         onClick={() => {
@@ -33,5 +35,7 @@ export default function Pagination(props) {
 /*
 - The functional component allows you to split the UI into independent and reusable pieces. 
 - The RFC is receiving data from the parent component using props
+
+- Left and right button which minuses 1 or adds 1 depending on whether the user wants to go back or forward
 
 */

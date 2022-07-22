@@ -1,6 +1,6 @@
 import "./TherapistCard.css";
 import React, { useEffect, useState } from "react";
-import moment from 'moment';
+import moment from "moment";
 
 export default function TherapistCard({
   id,
@@ -26,6 +26,10 @@ export default function TherapistCard({
 
   const appointmentMediumFirstValue =
     appointment_mediums[0] === "video" ? "video-camera.png" : "call-phone.png";
+
+  const therapistNextAppointmentParsed = JSON.parse(
+    JSON.stringify(moment(therapistNextAppointment).format("LLLL"))
+  );
 
   return (
     <div className="therapist-card-container">
@@ -56,28 +60,42 @@ export default function TherapistCard({
             {firstName} {lastName}
           </h3>
           <p className="occupation">Therapist</p>
-          {appointment_types.length === 2 ? (
+          {appointment_types.length > 1 ? (
             <div className="appointment-types">
-              <h4>Appointment types:</h4>
-              <p>consultation and one-off</p>
+              <p className="appointment-title">
+                Appointment types:{" "}
+                <span className="appointment-content">
+                  consultation and one-off
+                </span>
+              </p>
             </div>
           ) : (
             <div className="appointment-types">
-              <h4>Appointment type:</h4>
-              <p>{appointmentTypeFirstValue}</p>
+              <p className="appointment-title">
+                Appointment type:{" "}
+                <span className="appointment-content">
+                  {appointmentTypeFirstValue}
+                </span>
+              </p>
             </div>
           )}
-          <div className="next-available">
-            <span>Next available: </span>
-            <p>{JSON.stringify(moment(therapistNextAppointment).format('LLLL'))}</p>
+          <div className="next-available-container">
+            <p className="next-available-text">
+              Next available:{" "}
+              <span className="next-available-content">
+                {therapistNextAppointmentParsed}
+              </span>
+            </p>
           </div>
           <div className="specialism-container">
-            <span className="specialism-title">Can help you with: </span>
-            {specialisms.length > 1
-              ? specialisms.map((specialism) => {
-                  return <span className="specialism">{specialism}</span>;
-                })
-              : "N/A"}
+            <p className="specialism-title">
+              Can help you with:{" "}
+              {specialisms.length > 1
+                ? specialisms.map((specialism) => {
+                    return <span className="specialism-content">{specialism}</span>;
+                  })
+                : "N/A"}
+            </p>
           </div>
           <div className="therapist-button">
             <p className="therapist-text">Book Now</p>
@@ -93,10 +111,11 @@ Button component:
 - I would need to pass props down to the component such as id, firstName, lastName, appointment_type, appointment_medium, and availability
 - The information would need to be passed to "Confirmation" component screen
 
-
 Logic:
 - if appointment_types has a length of two, you know it has consultation and one_off
 - if appointment_types doesn't then you access the first index
+
+- if the therapist id matches next appointment id, you know the next appointment time matches that specific therapists
 
 
 TODO: Loop through specialisms
