@@ -1,10 +1,10 @@
-import "./App.css";
+import "../App.css";
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
 import {
   fetchAllTherapists,
   fetchNextAvailableAppointmentsByDate,
-} from "./api";
+} from "../api";
+import Header from "./Header";
 import TherapistCard from "./TherapistCard";
 import Pagination from "./Pagination";
 

@@ -1,4 +1,4 @@
-import "./TherapistCard.css";
+import "../TherapistCard.css";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
