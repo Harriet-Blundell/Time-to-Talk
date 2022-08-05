@@ -25,17 +25,17 @@
   margin-right: 8px;
 }
 
-input[type='checkbox'] {
-  -webkit-appearance:none;
-  width:20px;
-  height:20px;
-  background:white;
-  border-radius:5px;
-  border: 1.5px solid #AEAEB2;
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  border: 1.5px solid #aeaeb2;
 }
-input[type='checkbox']:checked {
-  background: #1DC9A0;
-  background-image: url('../../public/check.png');
+input[type="checkbox"]:checked {
+  background: #1dc9a0;
+  background-image: url("../../public/check.png");
   background-repeat: no-repeat;
   background-size: 17px;
 }
