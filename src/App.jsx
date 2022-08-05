@@ -1,12 +1,12 @@
-import "../App.css";
+import "./App.css";
 import React, { useEffect, useState } from "react";
 import {
   fetchAllTherapists,
   fetchNextAvailableAppointmentsByDate,
-} from "../api";
-import Header from "./Header";
-import TherapistCard from "./TherapistCard";
-import Pagination from "./Pagination";
+} from "./api";
+import Header from "./Components/Header";
+import TherapistCard from "./Components/TherapistCard";
+import Pagination from "./Components/Pagination";
 
 function App() {
   const [allTherapists, setAllTherapists] = useState();

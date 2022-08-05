@@ -1,5 +1,5 @@
 import React from "react";
-import "../Pagination.css";
+import "../styles/Pagination.css";
 
 export default function Pagination(props) {
   const { currentPage, handlePageClick } = props;
