@@ -1,0 +1,41 @@
+.video-option-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.video-checkbox {
+  margin-right: 8px;
+}
+
+.video-camera-img {
+  margin-right: 8px;
+}
+
+.phone-option-container {
+  display: flex;
+  align-items: center;
+}
+
+.phone-checkbox {
+  margin-right: 8px;
+}
+
+.phone-img {
+  margin-right: 8px;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance:none;
+  width:20px;
+  height:20px;
+  background:white;
+  border-radius:5px;
+  border: 1.5px solid #AEAEB2;
+}
+input[type='checkbox']:checked {
+  background: #1DC9A0;
+  background-image: url('../../public/check.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+}

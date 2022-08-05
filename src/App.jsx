@@ -1,12 +1,13 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import {
   fetchAllTherapists,
   fetchNextAvailableAppointmentsByDate,
 } from "./api";
+import "./App.css";
 import Header from "./Components/Header";
 import TherapistCard from "./Components/TherapistCard";
 import Pagination from "./Components/Pagination";
+import BookingContents from "./Components/BookingContents";
 
 function App() {
   const [allTherapists, setAllTherapists] = useState();
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
       <Header />
+      <BookingContents />
       <div className="therapist-container">
         {allTherapists
           ? allTherapists.map((therapist) => {
