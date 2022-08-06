@@ -30,18 +30,22 @@ function App() {
   return (
     <>
       <Header />
-      <BookingContents />
-      <div className="therapist-container">
-        {allTherapists
-          ? allTherapists.map((therapist) => {
-              return (
-                <TherapistCard
-                  {...therapist}
-                  nextAppointmentData={nextAppointmentData}
-                />
-              );
-            })
-          : ""}
+      <div class="main-content-container">
+        <div class="left-side-container">
+        <BookingContents />
+        </div>
+        <div className="therapist-container">
+          {allTherapists
+            ? allTherapists.map((therapist) => {
+                return (
+                  <TherapistCard
+                    {...therapist}
+                    nextAppointmentData={nextAppointmentData}
+                  />
+                );
+              })
+            : ""}
+        </div>
       </div>
       <Pagination currentPage={currentPage} handlePageClick={handlePageClick} />
     </>

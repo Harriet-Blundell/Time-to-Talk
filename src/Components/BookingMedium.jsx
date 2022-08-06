@@ -17,9 +17,10 @@ export default function BookingMedium() {
           alt="video camera icon"
           class="video-camera-img"
         />
-        <label for="video-call">Video Call</label>
+        <label for="video-call" class="video-call-text">
+          Video Call
+        </label>
       </div>
-
       <div class="phone-option-container">
         <input
           type="checkbox"

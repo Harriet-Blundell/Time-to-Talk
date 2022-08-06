@@ -8,6 +8,10 @@
   margin-right: 8px;
 }
 
+.video-call-text {
+  white-space: nowrap;
+}
+
 .video-camera-img {
   margin-right: 8px;
 }
