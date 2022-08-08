@@ -6,6 +6,7 @@
 
 .video-checkbox {
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .video-call-text {
@@ -23,6 +24,7 @@
 
 .phone-checkbox {
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .phone-img {

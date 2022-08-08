@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/BookingMedium.css";
 
-export default function BookingMedium() {
+export default function BookingMedium({handleVideoCheckboxChange, checked}) {
   return (
     <div class="booking-medium-container">
       <div class="video-option-container">
@@ -11,6 +11,7 @@ export default function BookingMedium() {
           name="video-call"
           value="Video Call"
           class="video-checkbox"
+          onClick={handleVideoCheckboxChange}
         />
         <img
           src="video-camera.png"

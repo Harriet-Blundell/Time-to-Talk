@@ -13,6 +13,7 @@ function App() {
   const [allTherapists, setAllTherapists] = useState();
   const [nextAppointmentData, setNextAppointmentData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     setAllTherapists(fetchAllTherapists(currentPage));
@@ -27,12 +28,16 @@ function App() {
     setCurrentPage(currentPage + number);
   };
 
+  const handleVideoCheckboxChange = () => {
+    setChecked(!checked);
+  };
+
   return (
     <>
       <Header />
       <div class="main-content-container">
         <div class="left-side-container">
-        <BookingContents />
+        <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} checked={checked}/>
         </div>
         <div className="therapist-container">
           {allTherapists
