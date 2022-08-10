@@ -17,7 +17,13 @@ function App() {
 
   useEffect(() => {
     setAllTherapists(fetchAllTherapists(currentPage));
-  }, [currentPage]);
+
+    if (checked) {
+      setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
+        return therapist.appointment_mediums[0] === 'video' ? therapist : ""
+      }))
+    }
+  }, [currentPage, checked]);
 
   useEffect(() => {
     setNextAppointmentData(fetchNextAvailableAppointmentsByDate());
