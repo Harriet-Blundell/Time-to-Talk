@@ -92,8 +92,8 @@ export default function TherapistCard({
               Can help you with:{" "}
               {specialisms.length > 1
                 ? specialisms.map((specialism) => {
-                    return <span className="specialism-content">{specialism}</span>;
-                  })
+                  return <span className="specialism-content">{specialism}</span>;
+                })
                 : "N/A"}
             </p>
           </div>
