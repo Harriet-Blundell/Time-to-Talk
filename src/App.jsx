@@ -43,18 +43,18 @@ function App() {
       <Header />
       <div class="main-content-container">
         <div class="left-side-container">
-        <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} checked={checked}/>
+          <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} checked={checked} />
         </div>
         <div className="therapist-container">
           {allTherapists
             ? allTherapists.map((therapist) => {
-                return (
-                  <TherapistCard
-                    {...therapist}
-                    nextAppointmentData={nextAppointmentData}
-                  />
-                );
-              })
+              return (
+                <TherapistCard
+                  {...therapist}
+                  nextAppointmentData={nextAppointmentData}
+                />
+              );
+            })
             : ""}
         </div>
       </div>
