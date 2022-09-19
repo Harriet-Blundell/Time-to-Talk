@@ -17,7 +17,7 @@ function App() {
   const [phoneOptionChecked, setPhoneOptionChecked] = useState(false);
 
   useEffect(() => {
-    if ((!videoOptionChecked && !phoneOptionChecked) || (videoOptionChecked && phoneOptionChecked)) {
+    if (!videoOptionChecked && !phoneOptionChecked) {
       setAllTherapists(fetchAllTherapists(currentPage));
     } else if (videoOptionChecked && !phoneOptionChecked) {
       setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
