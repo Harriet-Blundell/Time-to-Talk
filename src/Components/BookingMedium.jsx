@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/BookingMedium.css";
 
-export default function BookingMedium({handleVideoCheckboxChange, checked}) {
+export default function BookingMedium({ handleVideoCheckboxChange, handlePhoneCheckboxChange }) {
   return (
     <div class="booking-medium-container">
       <div class="video-option-container">
@@ -29,6 +29,7 @@ export default function BookingMedium({handleVideoCheckboxChange, checked}) {
           name="phone-call"
           value="Phone"
           class="phone-checkbox"
+          onClick={handlePhoneCheckboxChange}
         />
         <img src="call-phone.png" alt="phone icon" class="phone-img" />
         <label for="phone-call">Phone</label>
@@ -36,15 +37,3 @@ export default function BookingMedium({handleVideoCheckboxChange, checked}) {
     </div>
   );
 }
-
-/*
-TODO:
-
-1. Checkbox
-2. Icon - video call
-3. Icon - Phone
-
-If the user chooses video call -> filter therapists to only show video call
-If the user chooses phone call -> filter therapists to only show phone call
-
-*/

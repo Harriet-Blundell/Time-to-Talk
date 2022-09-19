@@ -1,9 +1,7 @@
 import React from "react";
 import "../styles/Pagination.css";
 
-export default function Pagination(props) {
-  const { currentPage, handlePageClick } = props;
-
+export default function Pagination({ currentPage, handlePageClick }) {
   return (
     <div className="button-container">
       <button

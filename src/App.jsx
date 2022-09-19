@@ -13,19 +13,28 @@ function App() {
   const [allTherapists, setAllTherapists] = useState();
   const [nextAppointmentData, setNextAppointmentData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [checked, setChecked] = useState(false);
+  const [videoOptionChecked, setVideoOptionChecked] = useState(false);
+  const [phoneOptionChecked, setPhoneOptionChecked] = useState(false);
 
   useEffect(() => {
-    setAllTherapists(fetchAllTherapists(currentPage));
-
-    if (checked) {
+    if ((!videoOptionChecked && !phoneOptionChecked) || (videoOptionChecked && phoneOptionChecked)) {
+      setAllTherapists(fetchAllTherapists(currentPage));
+    } else if (videoOptionChecked && !phoneOptionChecked) {
       setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
         if (therapist.appointment_mediums[0] === 'video' && therapist.appointment_mediums.length === 1) {
           return therapist;
         }
+        return "";
+      }))
+    } else if (phoneOptionChecked) {
+      setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
+        if (therapist.appointment_mediums[0] === 'phone' && therapist.appointment_mediums.length === 1) {
+          return therapist;
+        }
+        return "";
       }))
     }
-  }, [currentPage, checked]);
+  }, [currentPage, videoOptionChecked, phoneOptionChecked]);
 
   useEffect(() => {
     setNextAppointmentData(fetchNextAvailableAppointmentsByDate());
@@ -37,15 +46,19 @@ function App() {
   };
 
   const handleVideoCheckboxChange = () => {
-    setChecked(!checked);
+    setVideoOptionChecked(!videoOptionChecked);
   };
+
+  const handlePhoneCheckboxChange = () => {
+    setPhoneOptionChecked(!phoneOptionChecked);
+  }
 
   return (
     <>
       <Header />
       <div class="main-content-container">
         <div class="left-side-container">
-          <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} checked={checked} />
+          <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} handlePhoneCheckboxChange={handlePhoneCheckboxChange} />
         </div>
         <div className="therapist-container">
           {allTherapists
