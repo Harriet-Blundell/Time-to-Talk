@@ -22,17 +22,14 @@ export default function TherapistCard({
   }, [nextAppointmentData, id]);
 
   const sortedAppointmentTypeValues = appointment_types.sort();
-  
+
   const appointmentTypeFirstValue =
-    appointment_types[0] === "consultation" ? "consultation" : "one-off";
+    sortedAppointmentTypeValues[0] === "consultation" ? "consultation" : "one-off";
 
   const sortedAppointmentMedium = appointment_mediums.sort();
 
   const appointmentMediumFirstValue =
-    appointment_mediums[0] === "phone" ? "call-phone.png" : "video-camera.png";
-
-  // sort the appointment type first and medium array alphabetically to avoid doing the above.
-  // sort image medium out
+    sortedAppointmentMedium[0] === "phone" ? "call-phone.png" : "video-camera.png";
 
   const therapistNextAppointmentParsed = JSON.parse(
     JSON.stringify(moment(therapistNextAppointment).format("LLLL"))
@@ -46,7 +43,7 @@ export default function TherapistCard({
             {firstName[0]}
             {lastName[0]}
           </h1>
-          {appointment_types.length === 2 ? (
+          {appointment_mediums.length === 2 ? (
             <div className="appointment-medium-icons">
               <img
                 src="video-camera.png"

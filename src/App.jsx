@@ -20,10 +20,7 @@ function App() {
 
     if (checked) {
       setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
-        // you only want to return therapists that have 1 value in the array
-
         if (therapist.appointment_mediums[0] === 'video' && therapist.appointment_mediums.length === 1) {
-          console.log(therapist, "<<< therapist with only video")
           return therapist;
         }
       }))
