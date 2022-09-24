@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   fetchAllTherapists,
+  fetchFilteredTherapistsByMedium,
   fetchNextAvailableAppointmentsByDate,
 } from "./api";
 import "./App.css";
@@ -13,28 +14,40 @@ function App() {
   const [allTherapists, setAllTherapists] = useState();
   const [nextAppointmentData, setNextAppointmentData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [videoOptionChecked, setVideoOptionChecked] = useState(false);
-  const [phoneOptionChecked, setPhoneOptionChecked] = useState(false);
+  const [checkedState, setCheckedState] = useState({
+    "video-call": false,
+    "phone-call": false,
+  });
 
   useEffect(() => {
-    if (!videoOptionChecked && !phoneOptionChecked) {
+    const keysOfCheckedState = Object.keys(checkedState);
+
+    const filteredAppointmentMedium = keysOfCheckedState.filter((key) => {
+      return checkedState[key] ? key : "";
+    });
+
+    if (
+      (filteredAppointmentMedium.includes("video-call") ||
+        filteredAppointmentMedium.includes("phone-call")) &&
+      filteredAppointmentMedium.length === 1
+    ) {
+      setAllTherapists(
+        fetchFilteredTherapistsByMedium(
+          currentPage,
+          filteredAppointmentMedium[0]
+        )
+      );
+    } else if (
+      filteredAppointmentMedium.includes("video-call", "phone-call") &&
+      filteredAppointmentMedium.length === 2
+    ) {
+      setAllTherapists(
+        fetchFilteredTherapistsByMedium(currentPage, filteredAppointmentMedium)
+      );
+    } else {
       setAllTherapists(fetchAllTherapists(currentPage));
-    } else if (videoOptionChecked && !phoneOptionChecked) {
-      setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
-        if (therapist.appointment_mediums[0] === 'video' && therapist.appointment_mediums.length === 1) {
-          return therapist;
-        }
-        return "";
-      }))
-    } else if (phoneOptionChecked) {
-      setAllTherapists(fetchAllTherapists(currentPage).filter((therapist) => {
-        if (therapist.appointment_mediums[0] === 'phone' && therapist.appointment_mediums.length === 1) {
-          return therapist;
-        }
-        return "";
-      }))
     }
-  }, [currentPage, videoOptionChecked, phoneOptionChecked]);
+  }, [currentPage, checkedState]);
 
   useEffect(() => {
     setNextAppointmentData(fetchNextAvailableAppointmentsByDate());
@@ -45,31 +58,28 @@ function App() {
     setCurrentPage(currentPage + number);
   };
 
-  const handleVideoCheckboxChange = () => {
-    setVideoOptionChecked(!videoOptionChecked);
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckedState({ ...checkedState, [name]: checked });
   };
-
-  const handlePhoneCheckboxChange = () => {
-    setPhoneOptionChecked(!phoneOptionChecked);
-  }
 
   return (
     <>
       <Header />
       <div class="main-content-container">
         <div class="left-side-container">
-          <BookingContents handleVideoCheckboxChange={handleVideoCheckboxChange} handlePhoneCheckboxChange={handlePhoneCheckboxChange} />
+          <BookingContents handleCheckboxChange={handleCheckboxChange} />
         </div>
         <div className="therapist-container">
           {allTherapists
             ? allTherapists.map((therapist) => {
-              return (
-                <TherapistCard
-                  {...therapist}
-                  nextAppointmentData={nextAppointmentData}
-                />
-              );
-            })
+                return (
+                  <TherapistCard
+                    {...therapist}
+                    nextAppointmentData={nextAppointmentData}
+                  />
+                );
+              })
             : ""}
         </div>
       </div>

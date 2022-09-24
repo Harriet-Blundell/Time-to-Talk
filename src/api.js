@@ -2,7 +2,7 @@ import availabilityData from "./data/availability-mock.json";
 import counsellorData from "./data/counsellor-mock.json";
 const moment = require("moment");
 
-export const fetchAllTherapists = (pageNumber) => {
+export const fetchAllTherapists = (pageNumber = 1) => {
   return counsellorData.slice((pageNumber - 1) * 10, pageNumber * 10);
 };
 
@@ -95,6 +95,47 @@ export const fetchTherapistBySpecialism = (selectedSpecialisms) => {
 // .every() is used to check if the 'specialisms' array includes the individual specialism the user has selected
 // if the conditions are met, the correct therapists are returned else an empty array is given back
 // */
+
+export const fetchFilteredTherapistsByMedium = (
+  pageNumber,
+  appointmentMedium
+) => {
+  let filteredCounsellorData;
+
+  console.log(appointmentMedium, "<<<< hello world")
+
+  if (
+    appointmentMedium.includes("video-call", "phone-call") &&
+    appointmentMedium.length === 2
+  ) {
+    filteredCounsellorData = counsellorData.filter((counsellor) => {
+      return (
+        counsellor.appointment_mediums.includes("video", "phone") &&
+        counsellor.appointment_mediums.length === 2
+      );
+    });
+  } else if (appointmentMedium === "video-call") {
+    filteredCounsellorData = counsellorData.filter((counsellor) => {
+      return (
+        counsellor.appointment_mediums.includes("video") &&
+        counsellor.appointment_mediums.length === 1
+      );
+    });
+  } else if (appointmentMedium === "phone-call") {
+    filteredCounsellorData = counsellorData.filter((counsellor) => {
+      return (
+        counsellor.appointment_mediums.includes("phone") &&
+        counsellor.appointment_mediums.length === 1
+      );
+    });
+  }
+  return filteredCounsellorData.slice((pageNumber - 1) * 10, pageNumber * 10);
+};
+
+/* 
+filterTherapistsByMedium() take a medium option as an argument and returns
+the first 10 therapists of video or phone on the home page
+*/
 
 export const fetchTherapistById = (id) => {
   const filteredData = counsellorData.filter(
