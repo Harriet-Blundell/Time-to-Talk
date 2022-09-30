@@ -102,34 +102,15 @@ export const fetchFilteredTherapistsByMedium = (
 ) => {
   let filteredCounsellorData;
 
-  console.log(appointmentMedium, "<<<< hello world")
+  console.log(appointmentMedium, "<<<< hello world");
 
-  if (
-    appointmentMedium.includes("video-call", "phone-call") &&
-    appointmentMedium.length === 2
-  ) {
-    filteredCounsellorData = counsellorData.filter((counsellor) => {
-      return (
-        counsellor.appointment_mediums.includes("video", "phone") &&
-        counsellor.appointment_mediums.length === 2
-      );
-    });
-  } else if (appointmentMedium === "video-call") {
-    filteredCounsellorData = counsellorData.filter((counsellor) => {
-      return (
-        counsellor.appointment_mediums.includes("video") &&
-        counsellor.appointment_mediums.length === 1
-      );
-    });
-  } else if (appointmentMedium === "phone-call") {
-    filteredCounsellorData = counsellorData.filter((counsellor) => {
-      return (
-        counsellor.appointment_mediums.includes("phone") &&
-        counsellor.appointment_mediums.length === 1
-      );
-    });
-  }
-  return filteredCounsellorData.slice((pageNumber - 1) * 10, pageNumber * 10);
+  filteredCounsellorData = counsellorData.filter((counsellor) => {
+    return counsellor.appointment_mediums.filter((medium) =>
+      appointmentMedium.includes(medium)
+    );
+  });
+
+  return filteredCounsellorData;
 };
 
 /* 

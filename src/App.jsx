@@ -21,32 +21,12 @@ function App() {
 
   useEffect(() => {
     const keysOfCheckedState = Object.keys(checkedState);
-
     const filteredAppointmentMedium = keysOfCheckedState.filter((key) => {
-      return checkedState[key] ? key : "";
+      return checkedState[key];
     });
 
-    if (
-      (filteredAppointmentMedium.includes("video-call") ||
-        filteredAppointmentMedium.includes("phone-call")) &&
-      filteredAppointmentMedium.length === 1
-    ) {
-      setAllTherapists(
-        fetchFilteredTherapistsByMedium(
-          currentPage,
-          filteredAppointmentMedium[0]
-        )
-      );
-    } else if (
-      filteredAppointmentMedium.includes("video-call", "phone-call") &&
-      filteredAppointmentMedium.length === 2
-    ) {
-      setAllTherapists(
-        fetchFilteredTherapistsByMedium(currentPage, filteredAppointmentMedium)
-      );
-    } else {
-      setAllTherapists(fetchAllTherapists(currentPage));
-    }
+    setAllTherapists(fetchFilteredTherapistsByMedium(currentPage, filteredAppointmentMedium));
+
   }, [currentPage, checkedState]);
 
   useEffect(() => {
@@ -73,13 +53,13 @@ function App() {
         <div className="therapist-container">
           {allTherapists
             ? allTherapists.map((therapist) => {
-                return (
-                  <TherapistCard
-                    {...therapist}
-                    nextAppointmentData={nextAppointmentData}
-                  />
-                );
-              })
+              return (
+                <TherapistCard
+                  {...therapist}
+                  nextAppointmentData={nextAppointmentData}
+                />
+              );
+            })
             : ""}
         </div>
       </div>
