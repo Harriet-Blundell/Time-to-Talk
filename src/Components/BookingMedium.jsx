@@ -7,8 +7,8 @@ export default function BookingMedium({ handleCheckboxChange }) {
       <div class="video-option-container">
         <input
           type="checkbox"
-          id="video-call"
-          name="video-call"
+          id="video"
+          name="video"
           value="Video Call"
           class="video-checkbox"
           onClick={handleCheckboxChange}
@@ -25,8 +25,8 @@ export default function BookingMedium({ handleCheckboxChange }) {
       <div class="phone-option-container">
         <input
           type="checkbox"
-          id="phone-call"
-          name="phone-call"
+          id="phone"
+          name="phone"
           value="Phone"
           class="phone-checkbox"
           onClick={handleCheckboxChange}

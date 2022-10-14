@@ -100,17 +100,13 @@ export const fetchFilteredTherapistsByMedium = (
   pageNumber,
   appointmentMedium
 ) => {
-  let filteredCounsellorData;
+  console.log(appointmentMedium, "<<<< appointment medium");
 
-  console.log(appointmentMedium, "<<<< hello world");
+  if (appointmentMedium.length) {
+    // filter therapists by selected appointment medium
 
-  filteredCounsellorData = counsellorData.filter((counsellor) => {
-    return counsellor.appointment_mediums.filter((medium) =>
-      appointmentMedium.includes(medium)
-    );
-  });
-
-  return filteredCounsellorData;
+    // WORK ON THIS!
+  }
 };
 
 /* 

@@ -15,8 +15,8 @@ function App() {
   const [nextAppointmentData, setNextAppointmentData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [checkedState, setCheckedState] = useState({
-    "video-call": false,
-    "phone-call": false,
+    "video": false,
+    "phone": false,
   });
 
   useEffect(() => {
